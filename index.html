@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        main{
+            background-color:gainsboro;
+            width: 100%;
+            height: 100vh;
+        }
+    .allNetwork{
+        justify-content: center;
+        text-align: center;
+        
+    } 
+    .allNetwork h1{
+        padding-top: 20px;
+    }
+    .cover{
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 20px;
+    }  
+    #Network{
+        width: 100px;
+        height: 30px;
+        border: 0;
+        border-radius: 3px;
+    }
+    #Amount{
+        width: 100px;
+        height: 30px;
+        border: 0;
+        border-radius: 3px;
+    }
+    .click {
+        width: 150px;
+        height: 30px;
+        border: 0;
+        border-radius: 3px;
+    }
+    #disPin{
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 700;
+    }
+    .network{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        width: 50%;
+        height: 60vh;
+        justify-content: space-between;
+        margin-left: 300px;
+    }
+    .card{
+        text-align: center;
+        background-color: azure;
+        width: 300px;
+        height: 200px;
+    border-radius: 10px;
+    margin-top: 20px;
+ }
+ .card input{
+    width: 190px;
+    height: 30px;
+    margin-top: 50px;
+    border-radius: 3px;
+    border: 0;
+ }
+ .card h5{
+    margin-top: 20px;
+ }
+ .card button{
+    width: 100px;
+        height: 30px;
+        border: 0;
+        border-radius: 3px;
+ }
+ .card p{
+    margin-top: 30px;
+ }
+ @media (max-width:1200px){
+    .network{
+        margin-left: 100px;
+        width: 70%;
+        height: 60vh;
+        
+    }
+ }
+ @media (max-width:1200px){
+    .network{
+        margin-left: 50px;
+        width: 80%;
+        height: 60vh;
+        
+    }
+ }
+ @media (max-width:764px){
+    .network{
+        margin-left: 0px;
+        width: 100%;
+        height: 60vh;
+    
+    }
+    main{
+            background-color:gainsboro;
+            width: 100%;
+            height: 200vh;
+        }
+ }
+    </style>
+</head>
+<body>
+  <main>
+    <div class="allNetwork">
+        <h1>AIRTIME VOUCHER GENERATE</h1>
+        <div class="cover">
+            <div class="load">
+                <select name="" id="Network">
+                    <option value="MTN">MTN</option>
+                    <option value="GLO">GLO</option>
+                    <option value="AIRTEL">AIRTEL</option>
+                    <option value="9MOBIL">9MOBIL</option>
+                </select>
+                </div>
+                <div class="Amount">
+                    <select name="" id="Amount"> 
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </div>
+                <button class="click" onclick="generate()">GENERATE PIN</button>
+            </div>
+            <h1 id="disPin"></h1>
+        </div>
+        <div class="network">
+            <div class="card" >
+                <h5>MTN</h5>
+                <input type="text" name="" id="loadMTN" placeholder="*555*PIN#" />
+                <button onclick="loadMtnCard()">Load Airtime</button>
+                <p id="congrate"></p>
+            </div>
+                <div class="card" >
+                    <h5>GLO</h5>
+                    <input type="text" name="" id="loadGLO" placeholder="*123*PIN#"/>
+                    <button onclick="loadGLOCard()">Load Airtime</button>
+                    <p id="congrat1"></p>
+                </div>
+                
+                    <div class="card" >
+                        <h5>AIRTEL</h5>
+                        <input type="text" name="" id="loadAIRTEL" placeholder="*126*PIN#"/>
+                        <button onclick="loadAIRTELCard()">Load Airtime</button>
+                        <p id="congrat2"></p>
+                    </div>
+            
+                        <div class="card" >
+                            <h5>9MOBIL</h5>
+                            <input type="text" name="" id="load9MOBIL" placeholder="*311*#"/>
+                            <button onclick="load9MOBILCard()">Load Airtime</button>
+                            <p id="congrat3"></p>
+                        </div>
+    </div>
+    
+
+  </main>
+</body>
+</html>
+<script>
+    let Amount = document.getElementById("Amount");
+    let Networks = document.getElementById("Networks");
+    let congrate = document.getElementById("congrate")
+    let loadMTN = document.getElementById("loadMTN");
+      let balance = 0
+      let disPin = document.getElementById("disPin")     
+        function generate() {
+            let pin = Math.floor(Math.random() * 10000000000000);
+            console.log(pin)
+            disPin.innerHTML = pin;
+            alert(
+                `You have generated ${Network.value} of ${Amount.value}`
+            );
+        }
+        
+        function loadMtnCard() {
+            let pin = document.getElementById("disPin").innerHTML;
+            if (!loadMTN.value.startsWith("*555*") ||!loadMTN.value.endsWith("#") || loadMTN.value.includes(disPin.innerHTML)) {
+                alert("Invalid Code!");
+                loadMTN.value = ''
+            } else if (Network.value !== "MTN") {
+                alert("Invalid Network Provider!");
+            } else {
+
+                alert(
+                    `You have recharged ${Network.value} of ${Amount.value}`
+                );
+                loadMTN.value = ''
+                disPin.innerHTML = ''
+                congrate.innerHTML = `balance : ${balance += Number(Amount.value)}`
+                
+            }
+        }
+        function loadGLOCard() {
+            let pin = document.getElementById("disPin").innerHTML;
+            if (!loadGLO.value.startsWith("*123*") ||!loadGLO.value.endsWith("#") || loadGLO.value.includes(disPin.innerHTML)) {
+                alert("Invalid Code!");
+                loadGLO.value = ''
+            } else if (Network.value !== "GLO") {
+                alert("Invalid Network Provider");
+            } else {
+                alert(
+                    `You have recharged ${Network.value} of ${Amount.value}`
+                );
+                loadGLO.value = ''
+                disPin.innerHTML = ''
+                congrat1.innerHTML = `balance : ${balance += Number(Amount.value)}`
+            }
+        }
+        function loadAIRTELCard() {
+            let pin = document.getElementById("disPin").innerHTML;
+            if (!loadAIRTEL.value.startsWith("*126*") ||!loadAIRTEL.value.endsWith("#") || loadAIRTELL.value.includes(disPin.innerHTML) ) {
+                alert("Invalid Code!");
+                loadAIRTEL.value = ''
+            } else if (Network.value !== "AIRTEL") {
+                alert("Invalid Network Provider");
+
+            } else {
+                alert(
+                    `You have recharged ${Network.value} of ${Amount.value}`
+                );
+                loadAIRTEL.value = ''
+                disPin.innerHTML = ''
+                congrat2.innerHTML = `balance : ${balance += Number(Amount.value)}`
+            }
+        }
+        function load9MOBILCard() {
+            let pin = document.getElementById("disPin").innerHTML;
+            if (!load9MOBIL.value.startsWith("*311*") ||!load9MOBIL.value.endsWith("#") || load9MOBIL.value.includes(disPin.innerHTML)) {
+                alert("Invalid Code!");
+                load9MOIL.value = ''
+            } else if (Network.value !== "9MOBIL") {
+                alert("Invalid Network Provider");
+            } else {
+                alert(
+                    `You have recharged ${Network.value} of ${Amount.value}`
+                );
+                congrat3.innerHTML = `balance : ${balance += Number(Amount.value)}`
+                load9MOBIL.value = ''
+                disPin.innerHTML = ''
+            }
+        }
+</script>
